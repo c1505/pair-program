@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :events
   devise_for :users
-  # resources :users
+  resources :users, only: [:show, :index, :edit, :update]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

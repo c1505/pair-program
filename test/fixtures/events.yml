@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  host_id: 1
+  guest_id: 1
+  title: MyString
+  earliest_start: 2016-03-13 00:10:04
+  latest_start: 2016-03-13 00:10:04
+  notes: MyText
+  desired_style: MyString
+
+two:
+  host_id: 1
+  guest_id: 1
+  title: MyString
+  earliest_start: 2016-03-13 00:10:04
+  latest_start: 2016-03-13 00:10:04
+  notes: MyText
+  desired_style: MyString
