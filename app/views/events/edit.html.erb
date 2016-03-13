@@ -1,0 +1,30 @@
+<%= form_for @event do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+
+  <%= f.label :category %>
+  <%= f.text_field :category %><br>
+
+  <%= f.label :earliest_start %>
+  <%= f.date_field :earliest_start %><br>
+
+  <%= f.label :latest_start %>
+  <%= f.date_field :latest_start %><br>
+
+ 
+
+  <%= f.label :notes %>
+  <%= f.text_field :notes %><br>
+
+  <%= f.label :desired_style %>
+  <%= f.text_field :desired_style %><br>
+
+  <%= f.label :host_id %>
+  <%= f.text_field :host_id %><br>
+
+  <%= f.label :guest_id %>
+  <%= f.text_field :guest_id %><br>
+
+  <%= f.submit %>
+
+<% end %>

@@ -1,0 +1,15 @@
+<p>Project: <%= @event.category %></p>
+<p>Title: <%= @event.title %></p>
+<p>Earliest Start: <%= @event.earliest_start %></p>
+<p>Latest Start: <%= @event.latest_start %></p>
+<p>Desired Pairing Style: <%= @event.desired_style %></p>
+<p>Host: <%= @event.host_id %></p>
+<p>Guest: <%= @event.guest_id %></p>
+<p>Notes: <%= @event.notes %></p>
+
+<p>User Schedule: <%= @user.availability %></p>
+
+<p>User Schedule: <% @user.availability_to_array.each do |day| %></p>
+        <p><%= day %></p>
+    <% end %>
+
