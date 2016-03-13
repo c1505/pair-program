@@ -1,6 +1,10 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all 
+    if params[:event]
+      @events = Event.where(category: params[:event])
+    else
+      @events = Event.all 
+    end
   end
 
   def show 

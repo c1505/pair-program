@@ -1,10 +1,14 @@
+<%= form_tag("/events", method: "get") do %>
+  <%= select_tag "event",options_for_select(["Ruby", "Rails", "Sinatra", "Javascript"]) %>
+  <%= submit_tag("filter")  %>
+<% end %>
 
 <div class="row">
 <% @events.each do |event| %>
   <div class="col-xs-6 col-lg-4">
     <h2><%= event.category %></h2>
-    <p><strong>Earliest Start:</strong><%= event.earliest_start %> </p>
-    <p><strong> Latest Start: </strong><%= event.latest_start %></p>
+    <p><strong>Earliest Start:</strong><%= event.earliest_start.strftime("%b %d, %Y") %> </p>
+    <p><strong> Latest Start: </strong><%= event.latest_start.strftime("%b %d, %Y") %></p>
     <p><strong>Name:</strong>  <%= event.host.name %> </p>
     <p><strong>Typical Availability:</strong>EST</p>
     <% event.host.availability_to_array.each do |day|%>
@@ -13,114 +17,3 @@
   </div>
 <% end %>
 </div>
-
-
-
-
-
-<div class="row">
-  <div class="col-xs-6 col-lg-4">
-    <h2>Rails</h2>
-    <p><strong>Earliest Start: 21MAR16</strong> </p>
-    <p><strong> Latest Start: 28MAR16</strong></p>
-    <p>Name: Corey</p>
-    <p><strong>Typical Availability:</strong>EST</p>
-    <ul>
-      <li>M 6PM-11PM</li>
-      <li>T 6PM-11PM</li>
-      <li>W 6PM-11PM</li>
-      <li>TH 6PM-11PM</li>
-      <li>F 6PM-11PM</li>
-      <li>S 1PM-11PM</li>
-      <li>SU 9AM-11PM</li>
-    </ul>
-    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-  </div><!--/.col-xs-6.col-lg-4-->
-  <div class="col-xs-6 col-lg-4">
-    <h2>Sinatra</h2>
-    <p><strong>Earliest Start: 21MAR16</strong> </p>
-    <p><strong> Latest Start: 28MAR16</strong></p>
-    <p>Name: Corey</p>
-    <p><strong>Typical Availability:</strong>EST</p>
-    <ul>
-      <li>M 6PM-11PM</li>
-      <li>T 6PM-11PM</li>
-      <li>W 6PM-11PM</li>
-      <li>TH 6PM-11PM</li>
-      <li>F 6PM-11PM</li>
-      <li>S 1PM-11PM</li>
-      <li>SU 9AM-11PM</li>
-    </ul>
-    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-  </div><!--/.col-xs-6.col-lg-4-->
-  <div class="col-xs-6 col-lg-4">
-    <h2>Ruby</h2>
-    <p><strong>Earliest Start: 21MAR16</strong> </p>
-    <p><strong> Latest Start: 28MAR16</strong></p>
-    <p>Name: Corey</p>
-    <p><strong>Typical Availability:</strong>EST</p>
-    <ul>
-      <li>M 6PM-11PM</li>
-      <li>T 6PM-11PM</li>
-      <li>W 6PM-11PM</li>
-      <li>TH 6PM-11PM</li>
-      <li>F 6PM-11PM</li>
-      <li>S 1PM-11PM</li>
-      <li>SU 9AM-11PM</li>
-    </ul>
-    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-  </div><!--/.col-xs-6.col-lg-4-->
-  <div class="col-xs-6 col-lg-4">
-    <h2>Javascript</h2>
-    <p><strong>Earliest Start: 21MAR16</strong> </p>
-    <p><strong> Latest Start: 28MAR16</strong></p>
-    <p>Name: Corey</p>
-    <p><strong>Typical Availability:</strong>EST</p>
-    <ul>
-      <li>M 6PM-11PM</li>
-      <li>T 6PM-11PM</li>
-      <li>W 6PM-11PM</li>
-      <li>TH 6PM-11PM</li>
-      <li>F 6PM-11PM</li>
-      <li>S 1PM-11PM</li>
-      <li>SU 9AM-11PM</li>
-    </ul>
-    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-  </div><!--/.col-xs-6.col-lg-4-->
-  <div class="col-xs-6 col-lg-4">
-    <h2>Ruby</h2>
-    <p><strong>Earliest Start: 21MAR16</strong> </p>
-    <p><strong> Latest Start: 28MAR16</strong></p>
-    <p>Name: Corey</p>
-    <p><strong>Typical Availability:</strong>EST</p>
-    <ul>
-      <li>M 6PM-11PM</li>
-      <li>T 6PM-11PM</li>
-      <li>W 6PM-11PM</li>
-      <li>TH 6PM-11PM</li>
-      <li>F 6PM-11PM</li>
-      <li>S 1PM-11PM</li>
-      <li>SU 9AM-11PM</li>
-    </ul>
-    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-  </div><!--/.col-xs-6.col-lg-4-->
-  <div class="col-xs-6 col-lg-4">
-    <h2>Ruby</h2>
-    <p><strong>Earliest Start: 21MAR16</strong> </p>
-    <p><strong> Latest Start: 28MAR16</strong></p>
-    <p>Name: Corey</p>
-    <p><strong>Typical Availability:</strong>EST</p>
-    <ul>
-      <li>M 6PM-11PM</li>
-      <li>T 6PM-11PM</li>
-      <li>W 6PM-11PM</li>
-      <li>TH 6PM-11PM</li>
-      <li>F 6PM-11PM</li>
-      <li>S 1PM-11PM</li>
-      <li>SU 9AM-11PM</li>
-    </ul>
-    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-  </div><!--/.col-xs-6.col-lg-4-->
-</div><!--/row-->
-</div><!--/.col-xs-12.col-sm-9-->
-
