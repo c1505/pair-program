@@ -82,7 +82,9 @@
       </div>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      <p class="alert alert-success"><%= flash[:notice] %></p>
+      <% if flash[:notice] %>
+        <p class="alert alert-success"><%= flash[:notice] %></p>
+      <% end %>
     </div><!-- /.container -->
 
       <%= yield %>

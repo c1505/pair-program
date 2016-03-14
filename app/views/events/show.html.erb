@@ -22,6 +22,9 @@
 
 <% if @event.guest == current_user %>
   <h4>Host Email Address: <%= @event.host.email %> </h4>
+  <%= form_tag("/cancel/#{@event.id}", method: "post") do %>
+    <%= submit_tag "Cancel Pairing", class: "btn btn-danger"%>
+  <% end %>
 <% end %>
 
 when i click "Pair with Gust", I want to be able to see his contact information and a message to contact the user with a template form for waht to say.  pick 3 

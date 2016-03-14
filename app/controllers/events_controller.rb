@@ -4,7 +4,7 @@ class EventsController < ApplicationController
       @events = Event.where(category: params[:event]).where(guest_id: nil).order(:earliest_start)
       # Article.where.not(author: author)
     else
-      @events = Event.all 
+      @events = Event.all.where(guest_id: nil)
     end
   end
 
@@ -38,6 +38,15 @@ class EventsController < ApplicationController
     event.update(guest_id: current_user.id)
     flash[:notice] = "You have a partner!  Send #{event.host.name} an email to find a time to pair"
     redirect_to event
+  end
+
+  def cancel
+    event = Event.find(params[:id])
+    if event.guest == current_user
+      event.update(guest_id: nil)
+      flash[:notice] = "Pairing canceled.  Find a session that is a better match or create your own."
+      redirect_to events_path
+    end
   end
 
   private
