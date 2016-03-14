@@ -2,7 +2,9 @@ class EventsController < ApplicationController
   def index
     if params[:event]
       @events = Event.where(category: params[:event]).where(guest_id: nil).order(:earliest_start)
-      # Article.where.not(author: author)
+    elsif params[:user_id]
+      user = User.find(params[:user_id])
+      @events = user.events + user.reservations
     else
       @events = Event.all.where(guest_id: nil)
     end

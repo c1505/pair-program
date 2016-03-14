@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :events
   devise_for :users
-  resources :users, only: [:show, :index, :edit, :update]
+  resources :users, only: [:show, :index, :edit, :update] do 
+    resources :events, only: [:show, :index]
+  end
+
 
   post 'reserve/:id' => 'events#reserve'
   post 'cancel/:id' => 'events#cancel'
