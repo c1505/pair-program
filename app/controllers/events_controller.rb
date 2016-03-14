@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
   def index
     if params[:event]
-      @events = Event.where(category: params[:event])
+      @events = Event.where(category: params[:event]).where(guest_id: nil).order(:earliest_start)
+      # Article.where.not(author: author)
     else
       @events = Event.all 
     end
@@ -32,10 +33,17 @@ class EventsController < ApplicationController
     event.update(event_params)
   end
 
+  def reserve
+    event = Event.find(params[:id])
+    event.update(guest_id: current_user.id)
+    flash[:notice] = "You have a partner!  Send #{event.host.name} an email to find a time to pair"
+    redirect_to event
+  end
+
   private
 
     def event_params
-      params.require(:event).permit(:host_id, :guest_id, :title, :earliest_start, :latest_start, :notes, :desired_style, :category)
+      params.require(:event).permit(:host_id, :title, :earliest_start, :latest_start, :notes, :desired_style, :category)
     end
 
 

@@ -1,15 +1,30 @@
 <p>Project: <%= @event.category %></p>
-<p>Title: <%= @event.title %></p>
-<p>Earliest Start: <%= @event.earliest_start %></p>
-<p>Latest Start: <%= @event.latest_start %></p>
+<p>Earliest Start: <%= @event.earliest_start.strftime("%b %d, %Y") %></p>
+<p>Latest Start: <%= @event.latest_start.strftime("%b %d, %Y") %></p>
 <p>Desired Pairing Style: <%= @event.desired_style %></p>
-<p>Host: <%= @event.host_id %></p>
-<p>Guest: <%= @event.guest_id %></p>
+<p>Host: <%= @event.host.name %></p>
+<p>Guest: <%= @event.guest.try(:name) %></p>
 <p>Notes: <%= @event.notes %></p>
 
-<p>User Schedule: <%= @user.availability %></p>
-
-<p>User Schedule: <% @user.availability_to_array.each do |day| %></p>
+<p>Host Schedule: <% @user.availability_to_array.each do |day| %></p>
         <p><%= day %></p>
     <% end %>
+<% unless @event.guest || @event.host == current_user %>
+  <%= form_tag("/reserve/#{@event.id}", method: "post") do %>
+    <%= submit_tag "Pair with #{@event.host.name.split.first}", class: "btn btn-success"%>
+  <% end %>
+<% end %> 
+
+<% if @event.host == current_user %>
+  <%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-primary" %>
+  <%= @event.guest.try(:email) %>
+<% end %>
+
+<% if @event.guest == current_user %>
+  <h4>Host Email Address: <%= @event.host.email %> </h4>
+<% end %>
+
+when i click "Pair with Gust", I want to be able to see his contact information and a message to contact the user with a template form for waht to say.  pick 3 
+
+Later have the feature to actually send an email.  
 
