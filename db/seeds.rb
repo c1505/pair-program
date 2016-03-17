@@ -1,12 +1,22 @@
 
-10.times do |f|
-  host_id = rand(1..10)
-  desired_style = "pong"
-  category = "Javascript"
-  earliest_start = Faker::Date.between(3.days.ago, 4.days.from_now)
-  latest_start = Faker::Date.between(earliest_start, (earliest_start + 7.days))
-  Event.create(host_id: host_id, desired_style: desired_style, category: category, earliest_start: earliest_start, latest_start: latest_start)
-end
+
+# ########below here have already been run.  uncomment if doing a reset or deploying################
+
+# 20.times do |f|
+#   event_id = rand(1..10)
+#   user_id = rand(1..10)
+#   content = Faker::Lorem.paragraph
+#   Comment.create(event_id: event_id, user_id: user_id, content: content)
+# end
+
+# 10.times do |f|
+#   host_id = rand(1..10)
+#   desired_style = "pong"
+#   category = "Javascript"
+#   earliest_start = Faker::Date.between(3.days.ago, 4.days.from_now)
+#   latest_start = Faker::Date.between(earliest_start, (earliest_start + 7.days))
+#   Event.create(host_id: host_id, desired_style: desired_style, category: category, earliest_start: earliest_start, latest_start: latest_start)
+# end
 
 # 10.times do |f|
 #   host_id = rand(1..10)

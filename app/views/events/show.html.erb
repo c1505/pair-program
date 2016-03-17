@@ -27,7 +27,12 @@
   <% end %>
 <% end %>
 
-when i click "Pair with Gust", I want to be able to see his contact information and a message to contact the user with a template form for waht to say.  pick 3 
+<h4>Comments:</h4>
+<% @event.comments.each do |comment| %>
+  <p><strong><%=comment.user.name %>:</strong>
+  <%= comment.content %></p>
+<% end %>
 
-Later have the feature to actually send an email.  
-
+<%= render partial: "comments/form", locals: {comment: @comment, event: @event} %>
+here is where i want to have a form to create comments.  it should render a partial and
+automatically set the user_id and the event_id likely using hidden fields

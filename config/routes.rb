@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  resources :events
+  resources :comments
+
+  resources :events do 
+    resources :comments
+  end
+
   devise_for :users
+  
   resources :users, only: [:show, :index, :edit, :update] do 
     resources :events, only: [:show, :index]
   end

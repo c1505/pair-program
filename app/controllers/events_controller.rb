@@ -14,6 +14,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @user = User.find(@event.host_id)
     @user.availability_to_array
+    @comment = Comment.new
   end
 
   def new
