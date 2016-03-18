@@ -29,10 +29,11 @@
 
 <h4>Comments:</h4>
 <% @event.comments.each do |comment| %>
-  <p><strong><%=comment.user.name %>:</strong>
-  <%= comment.content %></p>
+  <p>
+    <strong><%=comment.user.name %>:</strong>
+    <%= comment.content %> 
+  </p>
+  <p><%= time_ago_in_words(comment.created_at) %> ago</p>
 <% end %>
 
 <%= render partial: "comments/form", locals: {comment: @comment, event: @event} %>
-here is where i want to have a form to create comments.  it should render a partial and
-automatically set the user_id and the event_id likely using hidden fields

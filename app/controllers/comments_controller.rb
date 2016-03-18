@@ -20,18 +20,18 @@ class CommentsController < ApplicationController
     redirect_to event 
   end
 
-  def edit
-    comment = Comment.find(params[:id])
-  end
+  # def edit
+  #   comment = Comment.find(params[:id])
+  # end
 
-  def update
-    comment = Comment.find(params[:id])
-    comment.update(comment_params)
-    event = comment.event 
-    redirect_to event 
-    # i don't want to have to redirect because i want the comment to just show up, but i will for now
+  # def update
+  #   comment = Comment.find(params[:id])
+  #   comment.update(comment_params)
+  #   event = comment.event 
+  #   redirect_to event 
+  #   # i don't want to have to redirect because i want the comment to just show up, but i will for now
 
-  end
+  # end
 
   private
 
