@@ -13,14 +13,11 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user = current_user
+    @comment.event_id = params[:event_id]
     @comment.save
-    binding.pry
 
     event = @comment.event 
     redirect_to event 
-    # not currently working
-    # not sure how to do current user.  
-    # i don't want to have to redirect because i want the comment to just show up, but i will for now
   end
 
   def edit
@@ -39,6 +36,6 @@ class CommentsController < ApplicationController
   private
 
     def comment_params
-      params.require(:comment).permit(:user_id, :event_id, :content)
+      params.require(:comment).permit(:content)
     end
 end
