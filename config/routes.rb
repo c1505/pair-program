@@ -11,7 +11,6 @@ Rails.application.routes.draw do
     resources :events, only: [:show, :index]
   end
 
-
   post 'reserve/:id' => 'events#reserve'
   post 'cancel/:id' => 'events#cancel'
 
