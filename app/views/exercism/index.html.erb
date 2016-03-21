@@ -1,0 +1,21 @@
+<%= form_tag("/exercism", method: "get") do %>
+  <%= select_tag "event",options_for_select(["Ruby", "Javascript"]) %>
+  <%= submit_tag("filter")  %>
+<% end %>
+
+<div class="row">
+<% @events.each do |event| %>
+  <div class="col-xs-6 col-lg-4">
+    <h2><%= event.category %></h2>
+    <h3><%= event.title %></h3>
+    <p><strong>Earliest Start:</strong><%= event.earliest_start.strftime("%b %d, %Y") %> </p>
+    <p><strong> Latest Start: </strong><%= event.latest_start.strftime("%b %d, %Y") %></p>
+    <p><strong>Name:</strong>  <%= event.host.name %> </p>
+    <p><strong>Typical Availability:</strong></p>
+    <% event.host.availability_to_array.each do |day|%>
+      <%= day %><br>
+    <% end %>
+    <%= link_to "More Information", event %>
+  </div>
+<% end %>
+</div>

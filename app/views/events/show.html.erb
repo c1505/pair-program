@@ -1,31 +1,42 @@
-<p>Project: <%= @event.category %></p>
-<p>Earliest Start: <%= @event.earliest_start.strftime("%b %d, %Y") %></p>
-<p>Latest Start: <%= @event.latest_start.strftime("%b %d, %Y") %></p>
-<p>Desired Pairing Style: <%= @event.desired_style %></p>
-<p>Host: <%= @event.host.name %></p>
-<p>Guest: <%= @event.guest.try(:name) %></p>
-<p>Notes: <%= @event.notes %></p>
-
-<p>Host Schedule: <% @user.availability_to_array.each do |day| %></p>
-        <p><%= day %></p>
+<div class="row">
+  <div class="col-xs-6 col-lg-4">
+        <h3>Project: <%= @event.category %></h3>
+    <% if @event.event_type == "Exercism" %>
+      <h4>Challenge Title: <%= @event.title %></h4>
+      <p>Repo Link: <a href="<%=@event.repo_link%>"><%=@event.repo_link%></a></p>
     <% end %>
-<% unless @event.guest || @event.host == current_user %>
-  <%= form_tag("/reserve/#{@event.id}", method: "post") do %>
-    <%= submit_tag "Pair with #{@event.host.name.split.first}", class: "btn btn-success"%>
-  <% end %>
-<% end %> 
+    <p>Earliest Start: <%= @event.earliest_start.strftime("%b %d, %Y") %></p>
+    <p>Latest Start: <%= @event.latest_start.strftime("%b %d, %Y") %></p>
+    <p>Desired Pairing Style: <%= @event.desired_style %></p>
+    <p>Host: <%= @event.host.name %></p>
+    <p>Guest: <%= @event.guest.try(:name) %></p>
+    <p>Notes: <%= @event.notes %></p> 
+  </div>
+  
+  <div class="col-xs-6 col-lg-4">
+    <% unless @event.guest || @event.host == current_user %>
+      <%= form_tag("/reserve/#{@event.id}", method: "post") do %>
+        <%= submit_tag "Pair with #{@event.host.name.split.first}", class: "btn btn-success"%>
+      <% end %>
+    <% end %> 
 
-<% if @event.host == current_user %>
-  <%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-primary" %>
-  <%= @event.guest.try(:email) %>
-<% end %>
+    <% if @event.guest == current_user %>
+      <h4>Host Email Address: <%= @event.host.email %> </h4>
+      <%= form_tag("/cancel/#{@event.id}", method: "post") do %>
+        <%= submit_tag "Cancel Pairing", class: "btn btn-danger"%>
+      <% end %>
+    <% end %>
+  </div>
 
-<% if @event.guest == current_user %>
-  <h4>Host Email Address: <%= @event.host.email %> </h4>
-  <%= form_tag("/cancel/#{@event.id}", method: "post") do %>
-    <%= submit_tag "Cancel Pairing", class: "btn btn-danger"%>
-  <% end %>
-<% end %>
+  <div class="col-xs-6 col-lg-4">
+    <h3>Host Schedule: </h3><p><% @user.availability_to_array.each do |day| %></p>
+            <p><%= day %></p>
+      <% end %>
+  </div>
+</div>
+
+
+
 
 <h4>Comments:</h4>
 <% @event.comments.each do |comment| %>
