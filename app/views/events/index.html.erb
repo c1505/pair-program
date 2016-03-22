@@ -2,6 +2,7 @@
   <%= select_tag "event",options_for_select(["Ruby", "Rails", "Sinatra", "Javascript"]) %>
   <%= submit_tag("filter")  %>
 <% end %>
+<h4>Find a partner or create your own session | <%=link_to "Host a Project", new_event_path %></h4>
 
 <div class="row">
 <% @events.each do |event| %>

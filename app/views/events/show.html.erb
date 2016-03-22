@@ -14,18 +14,18 @@
   </div>
   
   <div class="col-xs-6 col-lg-4">
-    <% unless @event.guest || @event.host == current_user %>
-      <%= form_tag("/reserve/#{@event.id}", method: "post") do %>
-        <%= submit_tag "Pair with #{@event.host.name.split.first}", class: "btn btn-success"%>
-      <% end %>
-    <% end %> 
-
     <% if @event.guest == current_user %>
       <h4>Host Email Address: <%= @event.host.email %> </h4>
       <%= form_tag("/cancel/#{@event.id}", method: "post") do %>
         <%= submit_tag "Cancel Pairing", class: "btn btn-danger"%>
       <% end %>
-    <% end %>
+    <% elsif @event.host == current_user %>
+      <%= link_to "Edit Event", edit_event_path(@event) %>
+    <% else %>
+      <%= form_tag("/reserve/#{@event.id}", method: "post") do %>
+        <%= submit_tag "Pair with #{@event.host.name.split.first}", class: "btn btn-success"%>
+      <% end %>
+    <% end %> 
   </div>
 
   <div class="col-xs-6 col-lg-4">
@@ -34,9 +34,6 @@
       <% end %>
   </div>
 </div>
-
-
-
 
 <h4>Comments:</h4>
 <% @event.comments.each do |comment| %>

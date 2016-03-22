@@ -1,0 +1,32 @@
+<%= form_for(event) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+
+  <%= f.label :category %>
+  <%= f.collection_select :category, Event::CATEGORIES, :to_s, :to_s %></br>
+
+  <%= f.label :event_type %>
+  <%= f.collection_select :event_type, Event::EVENT_TYPE, :to_s, :to_s %></br> 
+
+  <%= f.label :earliest_start %>
+  <%= f.date_field :earliest_start %><br>
+
+  <%= f.label :latest_start %>
+  <%= f.date_field :latest_start %><br>
+
+  <%= f.label :notes %>
+  <%= f.text_field :notes %><br>
+
+  <%= f.label :desired_style %>
+  <%= f.text_field :desired_style %><br>
+
+  <%= f.label :repo_link %>
+  <%= f.text_field :repo_link %>
+
+  <%= fields_for :host do |builder| %>
+    <%= builder.label :slack %>
+    <%= builder.text_field :slack %>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>

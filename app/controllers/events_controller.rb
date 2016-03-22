@@ -1,28 +1,30 @@
 class EventsController < ApplicationController
   def index
     if params[:event]
-      @events = Event.where(category: params[:event]).where(guest_id: nil).order(:earliest_start)
+      @events = Event.learn.where(category: params[:event]).where(guest_id: nil).order(:earliest_start)
     elsif params[:user_id]
       user = User.find(params[:user_id])
       @events = user.events + user.reservations
     else
-      @events = Event.all.where(guest_id: nil)
+      @events = Event.learn.where(guest_id: nil)
     end
   end
 
   def show 
     @event = Event.find(params[:id])
     @user = User.find(@event.host_id)
-    @user.availability_to_array
     @comment = Comment.new
   end
 
   def new
     @event = Event.new
+    @event.host = current_user
   end
 
   def create
+    binding.pry
     event = Event.new(event_params)
+    event.host = current_user
     event.save
     redirect_to event
   end
@@ -55,7 +57,7 @@ class EventsController < ApplicationController
   private
 
     def event_params
-      params.require(:event).permit(:host_id, :title, :earliest_start, :latest_start, :notes, :desired_style, :category)
+      params.require(:event).permit(:host_id, :title, :earliest_start, :latest_start, :notes, :desired_style, :category, host_attributes: [:slack])
     end
 
 
