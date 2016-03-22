@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   devise_for :users
   
   resources :users, only: [:show, :index, :edit, :update] do 
-    resources :events, only: [:show, :index]
+    resources :events, only: [:show, :index, :new]
   end
 
   post 'reserve/:id' => 'events#reserve'

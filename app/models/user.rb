@@ -13,4 +13,9 @@ class User < ActiveRecord::Base
   def availability_to_array
     availability.split(",")
   end
+
+  def first_name
+    name.split(" ").first 
+  end
+  
 end

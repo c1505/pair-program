@@ -56,7 +56,6 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Welcome " + current_user.name.split(" ")[0] + "!", current_user %></li>
             <li><%= link_to "Learn Projects", events_path %></li>
             
             <li><%= link_to "Exercism Pairing",exercism_index_path %></li>
@@ -64,8 +63,8 @@
             <li><%= link_to "Other Pairing", "" %></li>
             
              <% if user_signed_in? %>
+             <li><%= link_to "Welcome " + current_user.first_name + "!", current_user %></li>
               <li><%= link_to "My Events", user_events_path(current_user) %></li>
-
               <li>
               <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
               </li>
