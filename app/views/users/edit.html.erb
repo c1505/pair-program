@@ -1,3 +1,16 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@user.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @user do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
@@ -17,12 +30,17 @@
   <%= f.label :bio %>
   <%= f.text_field :bio %><br>
 
-  <%= f.label :availability %>
-  <%= f.text_field :availability %><br>
-
   <%= f.label :application %>
   <%= f.text_field :application %><br>
+
+  <%= f.label :availability %><br>
+  <%= f.text_area :availability, :cols => 30, :rows => 4 %><br>
+  <p>Availability should be comma separated.  Ex: M 5AM-12PM, T 4PM-7PM</p>
+
+  
   
   <%= f.submit %>
 
 <% end %>
+
+

@@ -22,11 +22,13 @@ class EventsController < ApplicationController
   end
 
   def create
-    binding.pry
-    event = Event.new(event_params)
-    event.host = current_user
-    event.save
-    redirect_to event
+    @event = Event.new(event_params)
+    @event.host = current_user
+    if @event.save
+      redirect_to event
+    else
+      render 'new'
+    end
   end
 
   def edit 
@@ -57,7 +59,7 @@ class EventsController < ApplicationController
   private
 
     def event_params
-      params.require(:event).permit(:host_id, :title, :earliest_start, :latest_start, :notes, :desired_style, :category, host_attributes: [:slack])
+      params.require(:event).permit(:host_id, :title, :earliest_start, :latest_start, :notes, :desired_style, :category, :event_type, host_attributes: [:slack])
     end
 
 

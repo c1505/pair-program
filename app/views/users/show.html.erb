@@ -4,6 +4,9 @@
 <p>Twitter: <%= @user.twitter %></p>
 <p>website: <%= @user.website %></p>
 <p>Bio: <%= @user.bio %></p>
-<p>Availability: <%= @user.availability %></p>
-<p>Preferred Screensharing Application<%= @user.application %></p>
+<p>Availability: <% @user.availability_to_array.each do |day| %></p>
+  <p><%= day %></p>
+<% end %>
+<p>Preferred Screensharing Application: <%= @user.application %></p>
 
+<%= link_to "Edit Profile", edit_user_path(@user) %>
