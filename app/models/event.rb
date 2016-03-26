@@ -7,6 +7,7 @@ class Event < ActiveRecord::Base
   validates :latest_start, presence: true
   validates :repo_link, presence: true, if: :exercism?
   validates :title, presence: true, if: :exercism?
+  validates :host, presence: true
 
 
   CATEGORIES = ["Ruby", "Rails", "Sinatra", "Javascript"]

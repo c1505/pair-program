@@ -10,10 +10,15 @@ class EventsController < ApplicationController
     end
   end
 
-  def show 
-    @event = Event.find(params[:id])
-    @user = User.find(@event.host_id)
-    @comment = Comment.new
+  def show
+    if current_user 
+      @event = Event.find(params[:id])
+      @user = User.find(@event.host_id)
+      @comment = Comment.new
+    else
+      flash[:notice] = "You must be logged in to view event details"
+      redirect_to new_user_session_path
+    end
   end
 
   def new
@@ -22,37 +27,59 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.host = current_user
-    if @event.save
-      redirect_to event
+    if current_user
+      @event = Event.new(event_params)
+      @event.host = current_user
+      if @event.save
+        redirect_to event
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      flash[:notice] = "You must be logged in to create an event"
+      redirect_to new_user_session_path
     end
   end
 
-  def edit 
-    @event = Event.find(params[:id])
+  def edit
+    if current_user 
+      @event = Event.find(params[:id])
+    else
+      flash[:notice] = "You must be logged in to edit an event"
+      redirect_to new_user_session_path
+    end
   end
 
   def update
-    event = Event.find(params[:id])
-    event.update(event_params)
+    if current_user
+      event = Event.find(params[:id])
+      event.update(event_params)
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def reserve
-    event = Event.find(params[:id])
-    event.update(guest_id: current_user.id)
-    flash[:notice] = "You have a partner!  Send #{event.host.name} an email to find a time to pair"
-    redirect_to event
+    if current_user
+      event = Event.find(params[:id])
+      event.update(guest_id: current_user.id)
+      flash[:notice] = "You have a partner!  Send #{event.host.name} an email to find a time to pair"
+      redirect_to event
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def cancel
-    event = Event.find(params[:id])
-    if event.guest == current_user
-      event.update(guest_id: nil)
-      flash[:notice] = "Pairing canceled.  Find a session that is a better match or create your own."
-      redirect_to events_path
+    if current_user
+      event = Event.find(params[:id])
+      if event.guest == current_user
+        event.update(guest_id: nil)
+        flash[:notice] = "Pairing canceled.  Find a session that is a better match or create your own."
+        redirect_to events_path
+      end
+    else
+      redirect_to new_user_session_path
     end
   end
 
