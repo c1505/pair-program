@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
   resources :comments
 
   resources :events do 
     resources :comments
   end
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   resources :users, only: [:show, :index, :edit, :update] do 
     resources :events, only: [:show, :index, :new]
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+
   resources :welcome, only: [:index]
 
   # Example of regular route:
