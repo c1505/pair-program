@@ -38,11 +38,8 @@
 
   <%= f.label :repo_link, class: "col-md-2 control-label" %>
   <%= f.text_field :repo_link %>
-
-  <%= fields_for :host do |builder| %>
-    <%= builder.label :slack %>
-    <%= builder.text_field :slack %>
-  <% end %>
+  
+  <%= f.text_field :all_tags, placeholder: "Tags separated with comma" %>
 
   <%= f.submit %>
 <% end %>

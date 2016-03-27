@@ -31,7 +31,7 @@ class EventsController < ApplicationController
       @event = Event.new(event_params)
       @event.host = current_user
       if @event.save
-        redirect_to event
+        redirect_to @event
       else
         render 'new'
       end
@@ -54,6 +54,7 @@ class EventsController < ApplicationController
     if current_user
       event = Event.find(params[:id])
       event.update(event_params)
+      redirect_to event 
     else
       redirect_to new_user_session_path
     end
@@ -86,7 +87,7 @@ class EventsController < ApplicationController
   private
 
     def event_params
-      params.require(:event).permit(:host_id, :title, :earliest_start, :latest_start, :notes, :desired_style, :category, :event_type, host_attributes: [:slack])
+      params.require(:event).permit(:host_id, :title, :earliest_start, :latest_start, :notes, :desired_style, :category, :event_type, :all_tags)
     end
 
 
