@@ -1,42 +1,24 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
   def show
-    if current_user
-      @user = User.find(params[:id])
-    else
-      flash[:notice] = "You must be logged in to view a user"
-      redirect_to new_user_session_path
-    end
+    @user = User.find(params[:id])
   end
 
   def index
-    # if current_user
-      @users = User.all
-    # else
-    #   flash[:notice] = "You must be logged in to view users"
-    #   redirect_to new_user_session_path
-    # end 
+    @users = User.all
   end
 
   def edit
-    if current_user
-      @user = User.find(params[:id])
-    else
-      redirect_to new_user_session_path
-    end
+    @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
-    if current_user == @user
-      if @user.update(user_params)
-        redirect_to @user
-      else
-        render 'edit'
-      end
+    if @user.update(user_params)
+      redirect_to @user
     else
-      flash[:error] = "Error!"
-      redirect_to root_path
-    end 
+      render 'edit'
+    end
   end
 
   private
