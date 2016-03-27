@@ -3,6 +3,14 @@
   <%= submit_tag("filter")  %>
 <% end %>
 
+<div class="tags-cloud glassy-bg">
+  <h4>Tags Cloud</h4>
+  <% tag_cloud Tag.counts, %w{css1 css2 css3 css4} do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
+
+
 <div class="row">
 <% @events.each do |event| %>
   <div class="col-xs-6 col-lg-4">
@@ -15,6 +23,7 @@
     <% event.host.availability_to_array.each do |day|%>
       <%= day %><br>
     <% end %>
+    <%=raw tag_links(event.all_tags)%><br>
     <%= link_to "More Information", event %>
   </div>
 <% end %>

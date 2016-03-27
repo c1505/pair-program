@@ -39,5 +39,9 @@ class Event < ActiveRecord::Base
   def all_tags
     self.tags.map(&:name).join(", ")
   end
-  
+
+  def self.tagged_with(name)
+    Tag.find_by_name!(name).events
+  end
+
 end

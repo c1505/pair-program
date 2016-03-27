@@ -35,6 +35,10 @@
   </div>
 </div>
 
+Tags:<br>
+<% @event.tags.each do |tag| %>
+  <%= tag.name %><br>
+<% end %>
 <h4>Comments:</h4>
 <% @event.comments.each do |comment| %>
   <p>
@@ -45,3 +49,5 @@
 <% end %>
 
 <%= render partial: "comments/form", locals: {comment: @comment, event: @event} %>
+<%=raw tag_links(@event.all_tags)%>
+Dunno the use of tags here. 

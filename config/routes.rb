@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 
   resources :welcome, only: [:index]
+  get 'tags/:tag', to: 'exercism#index', as: "tag"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
