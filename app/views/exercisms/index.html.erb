@@ -4,12 +4,13 @@
 <% end %>
 
 <div class="tags-cloud glassy-bg">
-  <h4>Tags Cloud</h4>
+  <h4>Tags:</h4>
   <% tag_cloud Tag.counts, %w{css1 css2 css3 css4} do |tag, css_class| %>
     <%= link_to tag.name, tag_path(tag.name), class: css_class %>
   <% end %>
 </div>
 
+<h2><%= link_to "Host an Event", new_exercism_path %></h2>
 
 <div class="row">
 <% @events.each do |event| %>
@@ -24,7 +25,7 @@
       <%= day %><br>
     <% end %>
     <%=raw tag_links(event.all_tags)%><br>
-    <%= link_to "More Information", event %>
+    <%= link_to "More Information", exercism_path(event) %>
   </div>
 <% end %>
 </div>

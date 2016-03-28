@@ -1,0 +1,34 @@
+
+<div class="form-group required">
+  <%= f.label :title, class: "control-label" %>
+  <%= f.text_field :title %><br>
+  
+  <%= f.label :category, class: "control-label" %>
+  <%= f.collection_select :category, Event::CATEGORIES, :to_s, :to_s %></br>
+
+  <%= hidden_field_tag "event[event_type]", "Exercism" %>
+
+  <%= f.label :earliest_start, class: "control-label" %>
+  <%= f.date_field :earliest_start %><br>
+
+  <%= f.label :latest_start, class: "control-label" %>
+  <%= f.date_field :latest_start %><br>
+
+  <%= f.label :repo_link, class: "control-label" %>
+  <%= f.text_field :repo_link %><br>
+  
+  </div>
+
+  <%= f.label :notes %>
+  <%= f.text_field :notes %><br>
+
+  <%= f.label :desired_style %>
+  <%= f.text_field :desired_style %><br>
+
+  
+
+  <%= f.label :all_tags %>
+  <%= f.text_field :all_tags, placeholder: "Separated with comma" %><br>
+
+  <%= f.submit %>
+

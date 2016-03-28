@@ -11,36 +11,29 @@
   </div>
 <% end %>
 
+<div>
 <%= form_for(event) do |f| %>
-  <%= f.label :title, class: "col-md-2 control-label" %>
-  <%= f.text_field :title %><br>
 
   <div class="form-group required">
-  <%= f.label :category, class: "col-md-2 control-label" %>
+  <%= f.label :category, class: "control-label" %>
   <%= f.collection_select :category, Event::CATEGORIES, :to_s, :to_s %></br>
 
-  <%= f.label :event_type, class: "col-md-2 control-label" %>
+  <%= f.label :event_type, class: "control-label" %>
   <%= f.collection_select :event_type, Event::EVENT_TYPE, :to_s, :to_s %></br> 
 
-  <%= f.label :earliest_start, class: "col-md-2 control-label" %>
+  <%= f.label :earliest_start, class: "control-label" %>
   <%= f.date_field :earliest_start %><br>
 
-  <%= f.label :latest_start, class: "col-md-2 control-label" %>
+  <%= f.label :latest_start, class: "control-label" %>
   <%= f.date_field :latest_start %><br>
   </div>
 
-
-  <%= f.label :notes, class: "col-md-2 control-label" %>
+  <%= f.label :notes %>
   <%= f.text_field :notes %><br>
 
-  <%= f.label :desired_style, class: "col-md-2 control-label" %>
+  <%= f.label :desired_style %>
   <%= f.text_field :desired_style %><br>
-
-  <%= f.label :repo_link, class: "col-md-2 control-label" %>
-  <%= f.text_field :repo_link %><br>
-  
-  <%= f.text_field :all_tags, placeholder: "Tags separated with comma" %>
 
   <%= f.submit %>
 <% end %>
-adding the class col-md-2 messed up the format of form
+</div>

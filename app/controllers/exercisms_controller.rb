@@ -1,13 +1,17 @@
-class EventsController < ApplicationController
+class ExercismsController < EventsController
   before_action :authenticate_user!, except: [:index]
+
   def index
+    @tags = Tag.all
     if params[:event]
-      @events = Event.learn.where(category: params[:event]).where(guest_id: nil).order(:earliest_start)
+      @events = Event.exercism.where(category: params[:event]).where(guest_id: nil).order(:earliest_start)
     elsif params[:user_id]
       user = User.find(params[:user_id])
       @events = user.events + user.reservations
+    elsif params[:tag]
+      @events = Event.tagged_with(params[:tag]).exercism
     else
-      @events = Event.learn.where(guest_id: nil)
+      @events = Event.exercism.where(guest_id: nil)
     end
   end
 
@@ -23,11 +27,10 @@ class EventsController < ApplicationController
   end
 
   def create
-    binding.pry
     @event = Event.new(event_params)
     @event.host = current_user
     if @event.save
-      redirect_to @event
+      redirect_to exercism_path(@event)
     else
       render 'new'
     end
@@ -40,14 +43,14 @@ class EventsController < ApplicationController
   def update
     event = Event.find(params[:id])
     event.update(event_params)
-    redirect_to event 
+    redirect_to exercism_path(event) 
   end
 
   def reserve
     event = Event.find(params[:id])
     event.update(guest_id: current_user.id)
     flash[:notice] = "You have a partner!  Send #{event.host.name} an email to find a time to pair"
-    redirect_to event
+    redirect_to exercism_path(event)
   end
 
   def cancel
@@ -55,16 +58,7 @@ class EventsController < ApplicationController
     if event.guest == current_user
       event.update(guest_id: nil)
       flash[:notice] = "Pairing canceled.  Find a session that is a better match or create your own."
-      redirect_to events_path
+      redirect_to exercisms_path
     end
   end
-
-  private
-
-    def event_params
-      params.require(:event).permit(:host_id, :title, :earliest_start, :latest_start, :notes, :desired_style, :category, :event_type, :repo_link, :all_tags)
-    end
-
-
-
 end

@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-xs-6 col-lg-4">
         <h3>Project: <%= @event.category %></h3>
+      <h4>Challenge Title: <%= @event.title %></h4>
+      <p>Repo Link: <a href="<%=@event.repo_link%>"><%=@event.repo_link%></a></p>
     <p>Earliest Start: <%= @event.earliest_start.strftime("%b %d, %Y") %></p>
     <p>Latest Start: <%= @event.latest_start.strftime("%b %d, %Y") %></p>
     <p>Desired Pairing Style: <%= @event.desired_style %></p>
@@ -16,7 +18,7 @@
         <%= submit_tag "Cancel Pairing", class: "btn btn-danger"%>
       <% end %>
     <% elsif @event.host == current_user %>
-      <%= link_to "Edit Event", edit_event_path(@event) %>
+      <%= link_to "Edit Event", edit_exercism_path(@event) %>
     <% else %>
       <%= form_tag("/reserve/#{@event.id}", method: "post") do %>
         <%= submit_tag "Pair with #{@event.host.name.split.first}", class: "btn btn-success"%>
@@ -31,6 +33,10 @@
   </div>
 </div>
 
+Tags:<br>
+<% @event.tags.each do |tag| %>
+  <%= tag.name %><br>
+<% end %>
 <h4>Comments:</h4>
 <% @event.comments.each do |comment| %>
   <p>
@@ -41,3 +47,4 @@
 <% end %>
 
 <%= render partial: "comments/form", locals: {comment: @comment, event: @event} %>
+<%=raw tag_links(@event.all_tags)%>
