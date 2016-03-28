@@ -1,4 +1,4 @@
-<%= form_tag("/exercism", method: "get") do %>
+<%= form_tag("/exercisms", method: "get") do %>
   <%= select_tag "event",options_for_select(["Ruby", "Javascript"]) %>
   <%= submit_tag("filter")  %>
 <% end %>
