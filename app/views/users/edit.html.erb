@@ -12,8 +12,16 @@
 <% end %>
 
 <%= form_for @user do |f| %>
-  <%= f.label :name %>
+  <div class="form-group required">
+
+  <%= f.label :name, class: "control-label" %>
   <%= f.text_field :name %><br>
+
+  <%= f.label :availability, class: "control-label" %><br>
+  <%= f.text_area :availability, :cols => 30, :rows => 4 %><br>
+  <p>Availability should be comma separated.  Ex: M 5AM-12PM, T 4PM-7PM</p>
+  </div>
+  
 
   <%= f.label :slack %>
   <%= f.text_field :slack %><br>
@@ -33,9 +41,7 @@
   <%= f.label :application %>
   <%= f.text_field :application %><br>
 
-  <%= f.label :availability %><br>
-  <%= f.text_area :availability, :cols => 30, :rows => 4 %><br>
-  <p>Availability should be comma separated.  Ex: M 5AM-12PM, T 4PM-7PM</p>
+  
 
   
   

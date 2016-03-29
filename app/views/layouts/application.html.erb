@@ -86,13 +86,20 @@
       <div class="starter-template">
         <p class="lead"></p>
       </div>
-      <% if flash[:notice] %>
-        <p class="alert alert-success"><%= flash[:notice] %></p>
-      <% end %>
+      
     </div><!-- /.container -->
     
-    <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-    <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+    <% if flash[:notice] %>
+      <p class="alert alert-success"><%= flash[:notice] %></p>
+    <% end %>
+
+    <% if flash[:error] %>
+      <p class="alert alert-danger"><%= flash[:error] %></p>
+    <% end %>
+
+    <% if flash[:alert] %>
+       <p class="alert alert-danger"><%= flash[:alert] %></p>
+    <% end %>
 
 
       

@@ -41,7 +41,11 @@ class User < ActiveRecord::Base
   end
 
   def first_name
-    name.split(" ").first 
+    if name 
+      name.split(" ").first
+    else
+      "name not set"
+    end
   end
   
 end

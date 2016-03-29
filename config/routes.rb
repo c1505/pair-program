@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: "registrations" }
   
   resources :users, only: [:show, :index, :edit, :update] do 
     resources :events, only: [:show, :index, :new]
