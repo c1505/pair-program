@@ -1,18 +1,54 @@
-<h1>Welcome Page</h1>
+<h1>Welcome!</h1>
 <% if user_signed_in? %>
-  <li>
   <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-  </li>
 <% else %>
-  <li>
   <%= link_to('Login', new_user_session_path)  %>  
-  </li>
+  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
 <% end %>
 
-<p>Find a partner for your Learn Verified Project</p>
-<p>Want to pair program more?  Find a partner to work on a short coding challenge.  Exercism.io is a great resource for coding challenges and discussion of code quality. </p>
-<p>Here is a problem from exercism you could solve with a partner or alone.</p>
-<p>Each exercism problem comes with a description of the problem and tests so you can make sure your code is working.</p>
-<p>INSERT DESCRIPTION OF EXERCISM PROBLEM HERE</p>
+<h3>Find a partner for your Learn Verified Project or work on a short coding challenge</h3>
 
-<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+<p>Exercism.io is a great resource for coding challenges and discussion of code quality. </p>
+<p>Check out exercism and sign up! <%= link_to "Exercism.io", "http://exercism.io/" %> </p>
+<p>Each exercism problem comes with a description of the problem and tests so you can make sure your code is working.</p>
+
+<h3>If you sign up for exercism, here is the first problem you would solve.</h3>
+<h4>Hamming</h4>
+
+<p>Write a program that can calculate the Hamming difference between two DNA strands.</p>
+
+<p>A mutation is simply a mistake that occurs during the creation or
+copying of a nucleic acid, in particular DNA. Because nucleic acids are
+vital to cellular functions, mutations tend to cause a ripple effect
+throughout the cell. Although mutations are technically mistakes, a very
+rare mutation may equip the cell with a beneficial attribute. In fact,
+the macro effects of evolution are attributable by the accumulated
+result of beneficial microscopic mutations over many generations.</p>
+
+<p>The simplest and most common type of nucleic acid mutation is a point
+mutation, which replaces one base with another at a single nucleotide.</p>
+
+<p>By counting the number of differences between two homologous DNA strands
+taken from different genomes with a common ancestor, we get a measure of
+the minimum number of point mutations that could have occurred on the
+evolutionary path between the two strands.</p>
+
+<p>This is called the 'Hamming distance'.</p>
+
+<p>It is found by comparing two DNA strands and counting how many of the
+nucleotides are different from their equivalent in the other string.</p>
+<div class="highlight plaintext">
+<table style="border-spacing: 0;"><tbody><tr>
+<td class="gutter gl" style="text-align: right;"><pre class="lineno">1
+2
+3</pre></td>
+<td class="code"><pre>GAGCCTACTAACGGGAT
+CATCGTAATGACGGCCT
+^ ^ ^  ^ ^    ^^
+</pre></td>
+</tr></tbody></table>
+</div>
+
+<p>The Hamming distance between these two DNA strands is 7.</p>
+
+
