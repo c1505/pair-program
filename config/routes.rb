@@ -17,15 +17,21 @@ Rails.application.routes.draw do
 
   resources :exercisms
 
-  resources :tags, only: [:index, :show]
+  # get 'tags/:tag', to: 'exercisms#index', as: "tag"
+  resources :tags, only: [:index, :show] #breaking my tag index functionality for now
+
+  resources :welcome, only: [:index]
+
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
 
-  resources :welcome, only: [:index]
-  # get 'tags/:tag', to: 'exercisms#index', as: "tag"
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

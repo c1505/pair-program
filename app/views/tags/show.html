@@ -1,0 +1,7 @@
+Tag:
+<div id="name" data-par="<%= params[:id] %>"></div>
+<div id="event_count"></div>
+
+<%= javascript_tag do %>
+  window.par = <%= params[:id] %>
+<% end %>

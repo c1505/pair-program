@@ -1,12 +1,18 @@
 // make sure this only operates on show page
 
 $(document).ready(function() { 
-  // alert("this");
-  $.get("/users/1.json", function(data) {
+  // $("#name").text("this")
+
+  // alert(par)
+  // alert( $("#name").data('par') )
+  var id = $("#name").data('par')
+
+  $.get("/tags/" + id + ".json", function(data) {
     // debugger;
-    var email = data.user.email
-    var availability = data.user.availability
-    var slack = data.user.slack
-    
+    $("#name").text(data.tag.name)
+    // var email = data.user.email
+    // var availability = data.user.availability
+    // var slack = data.user.slack
+    // debugger;
   })
 })
