@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  def index
+  def index #extract some behavior into event_search model
     if params[:event]
       @events = Event.learn.where(category: params[:event]).where(guest_id: nil).order(:earliest_start)
     elsif params[:user_id]
