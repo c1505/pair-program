@@ -34,3 +34,5 @@
 $(".tags.index").ready(function() {
   alert ("My example alert box.")
 })
+
+
