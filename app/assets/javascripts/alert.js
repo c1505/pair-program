@@ -27,9 +27,7 @@ $(".exercisms.show").ready(function() {
       $("#tags").append("<p>Name: " + arg.name + "<p>");
     })
   })
-
   submitTag()
-
 })
 
 function submitTag() {
@@ -41,36 +39,8 @@ function submitTag() {
       var posting = $.post('/tags', values);
  
       posting.done(function(data) {
-        // TODO: handle response
         $("#tags").append("<p>Name: " + data.tag.name + "<p>")
         $("#tag_name").val("")
       });
     });
 }
-
-// $.ajax({
-//   method: "POST"
-//   url: "/tags"
-//   data: {exercism_id: id, name: name}
-// })
-
-// $.ajax({
-//   method: "POST",
-//   url: "/tags",
-//   data: {exercism_id: 2, name: "nananannana"}
-// })
-
-// $(function () {
-//     $('form').submit(function(event) {
-//       //prevent form from submitting the default way
-//       event.preventDefault();
- 
-//       var values = $(this).serialize();
- 
-//       var posting = $.post('/posts', values);
- 
-//       posting.done(function(data) {
-//         // TODO: handle response
-//       });
-//     });
-//   });
