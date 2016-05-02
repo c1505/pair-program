@@ -8,6 +8,7 @@ class TagsController < ApplicationController
   end
 
   def index
+    binding.pry
     if params[:exercism_id]
       @tags = Tag.joins(:events).where(events: { id: params[:exercism_id]})
     else
