@@ -8,7 +8,15 @@ class TagsController < ApplicationController
   end
 
   def index
-    @tags = Tag.all
+    if params[:exercism_id]
+      @tags = Tag.joins(:events).where(events: { id: params[:exercism_id]})
+    else
+      @tags = Tag.all
+    end
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @tags}
+    end
   end
 
 end

@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   post 'reserve/:id' => 'events#reserve'
   post 'cancel/:id' => 'events#cancel'
 
-  resources :exercisms
+  resources :exercisms do
+    resources :tags
+  end
 
   # get 'tags/:tag', to: 'exercisms#index', as: "tag"
   resources :tags, only: [:index, :show] #breaking my tag index functionality for now
