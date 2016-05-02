@@ -17,8 +17,10 @@ class ExercismsController < EventsController
 
   def show
     @event = Event.find(params[:id])
+    @exercism = @event
     @user = User.find(@event.host_id)
     @comment = Comment.new
+    @tag = Tag.new
   end
 
   def new

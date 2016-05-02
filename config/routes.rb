@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :events do 
     resources :comments
+    resources :tags
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: "registrations" }
@@ -15,12 +16,10 @@ Rails.application.routes.draw do
   post 'reserve/:id' => 'events#reserve'
   post 'cancel/:id' => 'events#cancel'
 
-  resources :exercisms do
-    resources :tags
-  end
+  resources :exercisms
 
   # get 'tags/:tag', to: 'exercisms#index', as: "tag"
-  resources :tags, only: [:index, :show] #breaking my tag index functionality for now
+  resources :tags, only: [:index, :show, :create] #breaking my tag index functionality for now
 
   resources :welcome, only: [:index]
 

@@ -8,7 +8,6 @@ class TagsController < ApplicationController
   end
 
   def index
-    binding.pry
     if params[:exercism_id]
       @tags = Tag.joins(:events).where(events: { id: params[:exercism_id]})
     else
@@ -18,6 +17,15 @@ class TagsController < ApplicationController
       format.html {render :index}
       format.json {render json: @tags}
     end
+  end
+
+  def create
+    event = Event.find(params[:event_id])
+    tag = Tag.new(name: params[:tag][:name])
+    # event.tags.build(name: params[:tag][:name])
+    event.tags << tag
+    event.save
+    render json: tag
   end
 
 end

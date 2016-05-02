@@ -1,4 +1,4 @@
-// make sure this only operates on show page
+// tag show page
 
 $(".tags.show").ready(function() { 
   var id = $("#name").data('par')
@@ -19,10 +19,7 @@ $(".tags.index").ready(function() {
   })
 })
 
-// event show page.  should probably do nested
-// get event/:id/tags
-// need to do my get request with the params included.  very similar to the show page
-
+// event show page
 $(".exercisms.show").ready(function() {
   var id = $("#tags").data('par')
   $.get("/tags.json", {exercism_id: id}, function(data) {
@@ -30,10 +27,50 @@ $(".exercisms.show").ready(function() {
       $("#tags").append("<p>Name: " + arg.name + "<p>");
     })
   })
+
+  submitTag()
+
 })
 
-// $(".tags.show").ready(function() {
-//   alert ("My example alert box.")
+function submitTag() {
+  $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      var values = $(this).serialize();
+ 
+      var posting = $.post('/tags', values);
+ 
+      posting.done(function(data) {
+        // TODO: handle response
+        $("#tags").append("<p>Name: " + data.tag.name + "<p>")
+        $("#tag_name").val("")
+      });
+    });
+}
+
+// $.ajax({
+//   method: "POST"
+//   url: "/tags"
+//   data: {exercism_id: id, name: name}
 // })
 
+// $.ajax({
+//   method: "POST",
+//   url: "/tags",
+//   data: {exercism_id: 2, name: "nananannana"}
+// })
 
+// $(function () {
+//     $('form').submit(function(event) {
+//       //prevent form from submitting the default way
+//       event.preventDefault();
+ 
+//       var values = $(this).serialize();
+ 
+//       var posting = $.post('/posts', values);
+ 
+//       posting.done(function(data) {
+//         // TODO: handle response
+//       });
+//     });
+//   });
