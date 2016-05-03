@@ -1,7 +1,25 @@
 Tag:
+
+<% @tags.each do |tag| %>
+  <%= link_to tag.name, tag %>,
+<% end %>
 <p>
   Name:<div id="name" data-par="<%= params[:id] %>"></div>
 </p>
 <p>
   Tagged Count:<div id="count"></div>
 </p>
+
+<div id="event" class="row">
+
+</div>
+
+
+<!-- <div class="row">
+  <div class="col-xs-6 col-lg-4">
+    <h2 id="category"></h2>
+    <h3 id="title"></h3>
+    <p id="earliest"><strong></p>
+    <p id="latest"><strong></p>
+  </div>
+</div> -->

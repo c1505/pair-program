@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   def show
+    @tags = Tag.all
     @tag = Tag.find(params[:id])
     respond_to do |format|
       format.html {render :show}

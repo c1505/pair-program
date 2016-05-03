@@ -1,12 +1,24 @@
-// tag show page
+
 
 $(".tags.show").ready(function() { 
   var id = $("#name").data('par')
   $.get("/tags/" + id + ".json", function(data) {
     $("#name").text(data.tag.name)
     $("#count").text(data.tag.events.length)
-  })
+    data.tag.events.forEach(function(arg) {
+      $('#event').append(
+      "<div class='col-xs-6 col-lg-4'>" +
+        "<h2>" + arg.category + "</h2>" +
+        "<h3>" + arg.title + "</h3>" +
+      "</div>"
+        );
+    });
+  });
 })
+// render a partial of all the tags in a tag cloud.  change the link.  wrap the above function and call
+// it each time a button is clicked
+
+// for each event, add to the dom
 
 // on index page show first couple tags and then load rest with a button
 // use kaminari? 
