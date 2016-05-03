@@ -21,8 +21,7 @@ class TagsController < ApplicationController
 
   def create
     event = Event.find(params[:event_id])
-    tag = Tag.new(name: params[:tag][:name])
-    # event.tags.build(name: params[:tag][:name])
+    tag = Tag.where(name: params[:tag][:name]).first_or_create!
     event.tags << tag
     event.save
     render json: tag
