@@ -11,7 +11,7 @@ Tag.create(name: "Object Oriented")
 
 
 180.times do 
-  Tagging.find_or_create_by(event_id: rand(1..60), tag_id: rand(1..7))
+  Tagging.find_or_create_by(event_id: rand(1..20), tag_id: rand(1..7))
 end
 
 
