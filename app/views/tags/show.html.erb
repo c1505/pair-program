@@ -1,8 +1,10 @@
 Tag:
+<p id="tags">
+  <% @tags.each do |tag| %>
+    <%= link_to tag.name, tag %>,
+  <% end %>
+</p>
 
-<% @tags.each do |tag| %>
-  <%= link_to tag.name, tag %>,
-<% end %>
 <p>
   Name:<div id="name" data-par="<%= params[:id] %>"></div>
 </p>

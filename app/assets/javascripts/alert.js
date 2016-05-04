@@ -1,8 +1,31 @@
 
 
 $(".tags.show").ready(function() { 
-  var id = $("#name").data('par')
-  $.get("/tags/" + id + ".json", function(data) {
+  var defaultUrl = "/tags/" + $("#name").data('par')
+  getEvents(defaultUrl);
+  // $.get("/tags/" + id + ".json", function(data) {
+  //   $("#name").text(data.tag.name)
+  //   $("#count").text(data.tag.events.length)
+  //   data.tag.events.forEach(function(arg) {
+  //     $('#event').append(
+  //     "<div class='col-xs-6 col-lg-4'>" +
+  //       "<h2>" + arg.category + "</h2>" +
+  //       "<h3>" + arg.title + "</h3>" +
+  //     "</div>"
+  //       );
+  //   });
+  // });
+  $("a").on('click', function(event){
+    event.preventDefault();
+    clickedUrl = $(this).attr('href')
+    // first clear the dom
+    $('#event').text("")
+    getEvents(clickedUrl);
+  });
+})
+
+function getEvents(url) {
+  $.get(url + ".json", function(data) {
     $("#name").text(data.tag.name)
     $("#count").text(data.tag.events.length)
     data.tag.events.forEach(function(arg) {
@@ -14,7 +37,7 @@ $(".tags.show").ready(function() {
         );
     });
   });
-})
+}
 // render a partial of all the tags in a tag cloud.  change the link.  wrap the above function and call
 // it each time a button is clicked
 
