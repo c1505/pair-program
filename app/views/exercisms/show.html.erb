@@ -33,8 +33,9 @@
   </div>
 </div>
 
+
 <h2>Tags:</h2>
-<div id="tags" data-par="<%= params[:id] %>">
+  <div id="tags" data-par="<%= params[:id] %>">
 </div>
 
 <%= form_for [ @event, @tag ] do |f| %>
@@ -47,9 +48,6 @@
   </div>
 <% end %>
 
-
-
-<!-- replace with javascript -->
 
 <h4>Comments:</h4>
 <% @event.comments.each do |comment| %>
