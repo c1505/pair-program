@@ -4,6 +4,14 @@ class Event < ActiveRecord::Base
   has_many :comments
   has_many :taggings
   has_many :tags, through: :taggings
+  has_many :exercises
+  
+  def exercises_attributes=(exercises)
+    arr = exercises.map {|k, v| v }
+    arr.each do |hash|
+      self.exercises << Exercise.find_or_create_by(name: hash[:name])
+    end
+  end
 
   validates :earliest_start, presence: true
   validates :latest_start, presence: true

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327015052) do
+ActiveRecord::Schema.define(version: 20160509174631) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "event_id"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 20160327015052) do
     t.integer  "estimated_difficulty"
     t.string   "repo_link"
     t.string   "event_type"
+  end
+
+  create_table "exercises", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|

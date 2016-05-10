@@ -24,6 +24,17 @@
 
   <%= f.label :desired_style %>
   <%= f.text_field :desired_style %><br>
+  
+  <ul>
+     <%= f.fields_for :exercises do |exercises_form| %>
+       <li>
+         <%= exercises_form.label :name %>
+         <%= exercises_form.text_field :name %>
+       </li>
+     <% end %>
+  </ul>
+ 
+    
 
   
 
