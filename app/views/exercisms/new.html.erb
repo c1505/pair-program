@@ -30,11 +30,11 @@
   <%= f.text_field :desired_style %><br>
   
   <ul>
+    <h3>Exercises</h3>
      <%= f.fields_for :exercises do |exercises_form| %>
-       <li>
          <%= exercises_form.label :name %>
-         <%= exercises_form.text_field :name %>
-       </li>
+         <%= exercises_form.text_field :name %></br>
+
      <% end %>
   </ul>
  
