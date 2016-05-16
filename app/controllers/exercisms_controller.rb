@@ -44,8 +44,11 @@ class ExercismsController < EventsController
 
   def update
     event = Event.find(params[:id])
-    event.update(event_params)
-    redirect_to exercism_path(event) 
+    if event.host = current_user
+      event.update(event_params)
+      redirect_to exercism_path(event)
+    else
+      redirect_to :back, :alert => "Access denied."
   end
 
   def reserve

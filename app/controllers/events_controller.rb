@@ -38,8 +38,12 @@ class EventsController < ApplicationController
 
   def update
     event = Event.find(params[:id])
-    event.update(event_params)
-    redirect_to event 
+    if event.host == current_user
+      event.update(event_params)
+      redirect_to event
+    else
+      redirect_to :back, :alert => "Access denied."
+    end
   end
 
   def reserve
