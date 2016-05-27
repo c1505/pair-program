@@ -1,11 +1,24 @@
 //general
 // page specific javascript included
 // object
-function Tag (name, events) {
-  this.name = name;
-  this.events = events;
-  this.count = function() {
-    return events.length;
+function TagEvents (tag) {
+  this.name = tag.name;
+  this.id = tag.id;
+  this.events = tag.events;
+  this.count = function() { //should improve this to a method that does more.  take in a tag and output a link?
+    return tag.events.length;
+  };
+  this.toUrl = function() {
+    return ("<a href='/tags/" +  tag.id + "'>" + tag.name + "</a></br>");
+  };
+}
+
+//formatter
+function Tag (tag) {
+  this.name = tag.name;
+  this.id = tag.id;
+  this.toUrl = function() {
+    return ("<a href='/tags/" +  tag.id + "'>" + tag.name + "</a></br>");
   };
 }
 
@@ -42,15 +55,16 @@ function addEvents(data) {
 }
 
 function addTag(data) {
-  var t1 = new Tag(data.tag.name, data.tag.events);
+  var t1 = new TagEvents(data.tag);
   $("#name").text(t1.name);
   $("#count").text( t1.count() );
 }
 
 $(".tags.index").ready(function() {
   $.get("/tags.json", function(data) {
-    data.tags.forEach(function(arg) {
-      $("#tags").append("<p>Name: " + arg.name + "<p>");
+    data.tags.forEach(function(item) {
+      var tag = new Tag(item);
+      $("#tags").append(tag.toUrl());
     });
   });
 });
@@ -59,8 +73,9 @@ $(".tags.index").ready(function() {
 $(".exercisms.show").ready(function() {
   var id = $("#tags").data('par');//getting the event id from the show page.
   $.get("/tags.json", {exercism_id: id}, function(data) {
-    data.tags.forEach(function(arg) {
-      $("#tags").append("<p>" + arg.name + "<p>");
+    data.tags.forEach(function(tag) {
+    var tagObject = new Tag(tag);
+      $("#tags").append(tagObject.toUrl());
     });
   });
   submitTag();
@@ -73,7 +88,8 @@ function submitTag() {
     var values = $(this).serialize(); //encodes form elements as a string for submission
     var posting = $.post('/tags', values);
     posting.success(function(data) {
-      $("#tags").append("<p>" + data.tag.name + "<p>");
+      var tag = new Tag(data.tag);
+      $("#tags").append(tag.toUrl());
       $("#tag_name").val("");//resets field to blank upon submission
     });
   });

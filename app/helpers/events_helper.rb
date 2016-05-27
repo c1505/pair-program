@@ -1,7 +1,12 @@
 module EventsHelper
-  def tag_links(tags)
-    tags.split(",").map{|tag| link_to tag.strip, tag_path(tag.strip) }.join(", ") 
+  # def tag_links(tags)
+  #   tags.split(",").map{|tag| link_to tag.strip, tag_path(tag.strip) }.join(", ") 
+  # end
+
+  def tag_links(event)
+    event.tags.map{ |tag| link_to tag.name, tag}.join(", ")
   end
+
 
   def tag_cloud(tags, classes)
     max = tags.sort_by(&:count).last

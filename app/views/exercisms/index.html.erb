@@ -26,7 +26,7 @@
     <% event.host.availability_to_array.each do |day|%>
       <%= day %><br>
     <% end %>
-    <%=raw tag_links(event.all_tags)%><br>
+    <%=raw tag_links(event)%><br>
     <%= link_to "More Information", exercism_path(event) %>
   </div>
 <% end %>
