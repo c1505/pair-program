@@ -49,6 +49,7 @@ class ExercismsController < EventsController
       redirect_to exercism_path(event)
     else
       redirect_to :back, :alert => "Access denied."
+    end
   end
 
   def reserve
