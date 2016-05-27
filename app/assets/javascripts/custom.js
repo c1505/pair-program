@@ -6,10 +6,10 @@ function TagEvents (tag) {
   this.id = tag.id;
   this.events = tag.events;
   this.count = function() {
-    return tag.events.length;
+    return this.events.length;
   };
   this.toUrl = function() {
-    return ("<a href='/tags/" +  tag.id + "'>" + tag.name + "</a></br>");
+    return ("<a href='/tags/" +  this.id + "'>" + this.name + "</a></br>");
   };
 }
 
@@ -18,7 +18,7 @@ function Tag (tag) {
   this.name = tag.name;
   this.id = tag.id;
   this.toUrl = function() {
-    return ("<a href='/tags/" +  tag.id + "'>" + tag.name + "</a></br>");
+    return ("<a href='/tags/" +  this.id + "'>" + this.name + "</a></br>");
   };
 }
 
