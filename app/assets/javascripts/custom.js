@@ -5,7 +5,7 @@ function TagEvents (tag) {
   this.name = tag.name;
   this.id = tag.id;
   this.events = tag.events;
-  this.count = function() { //should improve this to a method that does more.  take in a tag and output a link?
+  this.count = function() {
     return tag.events.length;
   };
   this.toUrl = function() {
@@ -71,7 +71,7 @@ $(".tags.index").ready(function() {
 
 // event show page
 $(".exercisms.show").ready(function() {
-  var id = $("#tags").data('par');//getting the event id from the show page.
+  var id = $("#tags").data('par');
   $.get("/tags.json", {exercism_id: id}, function(data) {
     data.tags.forEach(function(tag) {
     var tagObject = new Tag(tag);
@@ -81,16 +81,16 @@ $(".exercisms.show").ready(function() {
   submitTag();
 });
 
-//submits a post request of the tag and adds the tag to the dom without a page refresh.
+
 function submitTag() {
   $('form').submit(function(event) {
     event.preventDefault();
-    var values = $(this).serialize(); //encodes form elements as a string for submission
+    var values = $(this).serialize();
     var posting = $.post('/tags', values);
     posting.success(function(data) {
       var tag = new Tag(data.tag);
       $("#tags").append(tag.toUrl());
-      $("#tag_name").val("");//resets field to blank upon submission
+      $("#tag_name").val("");
     });
   });
 }
