@@ -26,11 +26,9 @@ $(".tags.show").ready(function() {
   var defaultUrl = "/tags/" + $("#name").data('par');
 
   getEvents(defaultUrl);
-
   $("#tags a").on('click', function(event){
     event.preventDefault();
     clickedUrl = $(this).attr('href');
-    $('#event').text("");
     getEvents(clickedUrl);
   });
 });
@@ -43,12 +41,13 @@ function getEvents(url) {
 }
 
 function addEvents(data) {
-  data.tag.events.forEach(function(arg) {
+  $('#event').text("");
+  data.tag.events.forEach(function(event) {
     $('#event').append(
     "<div class='col-xs-6 col-lg-4'>" +
-      "<h2>" + arg.category + "</h2>" +
-      "<h3>" + arg.title + "</h3>" +
-      "<p><a href='/exercisms/" +  arg.id + "'>More Information</a>" + "</p>" +
+      "<h2>" + event.category + "</h2>" +
+      "<h3>" + event.title + "</h3>" +
+      "<p><a href='/exercisms/" +  event.id + "'>More Information</a>" + "</p>" +
     "</div>"
       );
   });

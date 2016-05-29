@@ -38,7 +38,7 @@
   <div id="tags" data-par="<%= params[:id] %>">
 </div>
 
-<%= form_for [ @event, @tag ] do |f| %>
+<%= form_for @tag do |f| %>
   <div class="field">
     <%= f.text_field :name %>
     <%= hidden_field_tag 'event_id', @event.id %>
