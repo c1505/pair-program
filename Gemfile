@@ -50,6 +50,7 @@ group :development, :test do
   gem 'byebug'
   gem 'pry'
   gem 'faker'
+  gem 'rspec-rails'
 end
 
 group :development do
