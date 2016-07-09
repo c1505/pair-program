@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Homes", type: :feature do
-  describe "home page" do
+  describe "logging in" do
 
     context "logged in" do
       @user = User.create(email: "example@example.com", password: "password")
@@ -13,6 +13,14 @@ RSpec.feature "Homes", type: :feature do
       fill_in('user_password', :with => "password")
       click_button('Log in')
       expect(page).to have_content("Signed in successfully.")
+    end
+
+    it "displays an error when the password is incorrect" do
+      visit 'users/sign_in'
+      fill_in('user_email', :with => "example@example.com")
+      fill_in('user_password', :with => "wrong password")
+      click_button('Log in')
+      expect(page).to have_content("Invalid email or password.")
     end
 
     it "shows the home page" do
