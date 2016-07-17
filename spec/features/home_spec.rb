@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Homes", type: :feature do
+RSpec.feature "Home", type: :feature do
   feature "home page" do
     it "shows the home page" do
       visit '/'
