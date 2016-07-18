@@ -16,5 +16,6 @@
 !/log/.keep
 /tmp
 notes
+to_test.md
 
 secrets.yml
