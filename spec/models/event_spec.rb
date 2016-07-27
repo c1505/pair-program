@@ -4,9 +4,6 @@ describe Event do
   it "has a valid factory" do
     expect(FactoryGirl.build(:event)).to be_valid
   end
-  it "is valid with start dates" do
-    expect(FactoryGirl.build(:event)).to be_valid
-  end
 
   it "is invalid without start dates" do
     expect(FactoryGirl.build(:event, earliest_start: nil)).to_not be_valid

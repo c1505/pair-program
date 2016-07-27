@@ -82,7 +82,7 @@ $(".exercisms.show").ready(function() {
 
 
 function submitTag() {
-  $('form').submit(function(event) {
+  $('#new_tag').submit(function(event) {
     event.preventDefault();
     var values = $(this).serialize();
     var posting = $.post('/tags', values);
