@@ -25,7 +25,7 @@ class ExercismsController < EventsController
 
   def new
     @event = Event.new
-    @event.host = current_user
+    @event.host = current_user #do i need this?
   end
 
   def create
