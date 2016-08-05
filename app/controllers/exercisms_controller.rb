@@ -40,6 +40,7 @@ class ExercismsController < EventsController
 
   def edit
     @event = Event.find(params[:id])
+    redirect_to root_path, :alert => "Access denied" unless @event.host == current_user
   end
 
   def update
